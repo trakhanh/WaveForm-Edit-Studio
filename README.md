@@ -6,14 +6,60 @@ Giao diện của phần mềm được thiết kế theo phong cách **Glassmor
 
 ---
 
-## 🛠️ Yêu cầu Hệ thống & Tiền đề Cài đặt
+## 🛠️ Yêu cầu Hệ thống & Hướng dẫn Cài đặt Tiền đề
 
-Trước khi khởi chạy ứng dụng, hãy đảm bảo máy tính của bạn đã được cài đặt đầy đủ các công cụ cốt lõi sau:
+Trước khi khởi chạy ứng dụng, hãy đảm bảo máy tính của bạn đã được cài đặt đầy đủ 3 công cụ cốt lõi dưới đây. Vì ứng dụng được tối ưu hóa chạy tốt nhất trên **Windows**, hãy làm theo hướng dẫn từng bước chi tiết sau:
 
-1.  **Node.js (v18.0 trở lên)** & Trình quản lý gói `npm`.
-2.  **Python (v3.10 trở lên)** (Đã được tích hợp vào biến môi trường PATH để gọi từ lệnh `python`).
-3.  **FFmpeg (Rất quan trọng):** Bộ công cụ xử lý video dòng lệnh. Bạn bắt buộc phải cài đặt FFmpeg và cấu hình thư mục `bin` vào **System Environment Variables (PATH)** trên Windows để ứng dụng có thể ghép nối và mã hóa video.
-    *   *Cách kiểm tra:* Mở Terminal/CMD gõ `ffmpeg -version` và `ffprobe -version` nếu hiển thị thông số phiên bản là đã thành công.
+### 1. 🟢 Cài đặt Node.js & NPM
+*   **Bước A:** Truy cập trang chủ chính thức: **[nodejs.org](https://nodejs.org/)**.
+*   **Bước B:** Tải về phiên bản **LTS (Recommended For Most Users)** để có sự ổn định tốt nhất.
+*   **Bước C:** Mở tệp `.msi` vừa tải, nhấp **Next** liên tục để cài đặt theo các giá trị mặc định của hệ thống.
+*   **Bước D:** Xác thực cài đặt thành công bằng cách mở Terminal (PowerShell hoặc CMD) gõ:
+    ```bash
+    node -v
+    npm -v
+    ```
+    *(Màn hình hiển thị phiên bản ví dụ `v20.x.x` và `10.x.x` là hoàn tất).*
+
+---
+
+### 2. 🐍 Cài đặt Python (Cực kỳ quan trọng ô tích PATH)
+*   **Bước A:** Truy cập trang tải về: **[python.org/downloads](https://python.org/downloads/)**.
+*   **Bước B:** Nhấp nút tải phiên bản Python mới nhất phù hợp cho Windows.
+*   **Bước C:** Mở trình cài đặt. **LƯU Ý BẮT BUỘC:** Hãy tích chọn vào ô vuông **"Add python.exe to PATH"** (hoặc *Add Python to PATH*) nằm ở dưới cùng giao diện cài đặt trước khi bấm nút **Install Now**. Nếu bỏ qua bước này, máy tính sẽ báo lỗi *"lệnh python/pip không tồn tại"*.
+*   **Bước D:** Xác thực cài đặt thành công bằng cách mở Terminal gõ:
+    ```bash
+    python --version
+    pip --version
+    ```
+    *(Màn hình hiển thị phiên bản Python `3.10` trở lên là thành công).*
+
+---
+
+### 3. 🎬 Cài đặt FFmpeg & Cấu hình Biến môi trường PATH (Tối quan trọng cho Video)
+FFmpeg là công cụ giải mã âm thanh và vẽ sóng nhạc. Đây là phần cài đặt đòi hỏi sự chính xác cao trên Windows, hãy làm đúng theo 4 bước nhỏ sau:
+
+*   **Bước A: Tải gói FFmpeg build sẵn cho Windows:**
+    *   Truy cập trang phân phối chính thức: **[gyan.dev/ffmpeg/builds/](https://www.gyan.dev/ffmpeg/builds/)**.
+    *   Kéo xuống phần **git master builds** hoặc **release builds**, nhấp chuột vào tệp **`ffmpeg-git-full.7z`** (hoặc `ffmpeg-release-essentials.zip`) để tải về.
+*   **Bước B: Giải nén và đặt thư mục:**
+    *   Tạo một thư mục mới có tên là **`FFmpeg`** nằm trực tiếp tại ổ đĩa `C:\` (đường dẫn đầy đủ là `C:\FFmpeg`).
+    *   Dùng phần mềm giải nén (như WinRAR hoặc 7-Zip) giải nén tệp tin vừa tải vào thư mục này. 
+    *   Hãy chắc chắn rằng cấu trúc thư mục chứa tệp chạy có dạng: **`C:\FFmpeg\bin`** (bên trong thư mục `bin` này phải chứa 3 file thực thi là `ffmpeg.exe`, `ffplay.exe`, và `ffprobe.exe`).
+*   **Bước C: Thêm đường dẫn thư mục `bin` vào Environment Variables (PATH):**
+    1.  Nhấn nút `Start` (hoặc phím `Windows`) $\rightarrow$ gõ tìm kiếm chữ **`env`** $\rightarrow$ chọn mở mục **"Edit the system environment variables"** (Chỉnh sửa biến môi trường hệ thống).
+    2.  Tại tab *Advanced* của cửa sổ hiện lên, nhấp chọn nút **"Environment Variables..."** nằm ở góc dưới cùng bên phải.
+    3.  Tại khung **"System variables"** ở nửa dưới, cuộn tìm dòng có tên là **`Path`** (hoặc `PATH`) $\rightarrow$ nhấp đúp chuột vào nó (hoặc chọn và nhấn **Edit...**).
+    4.  Nhấp chọn nút **"New"** ở góc phải $\rightarrow$ dán chính xác đường dẫn thư mục chứa tệp chạy của bạn vào: **`C:\FFmpeg\bin`**.
+    5.  Bấm nút **OK** liên tiếp ở tất cả các cửa sổ để lưu lại thay đổi.
+*   **Bước D: Khởi động lại terminal để nhận diện:**
+    *   **Lưu ý:** Bạn bắt buộc phải **đóng hoàn toàn** tất cả các Terminal/CMD/VS Code đang mở và khởi động lại một cửa sổ mới để hệ thống tải lại biến môi trường.
+    *   Gõ các lệnh sau để kiểm tra:
+        ```bash
+        ffmpeg -version
+        ffprobe -version
+        ```
+    *   *(Nếu terminal hiển thị đầy đủ thông số cấu hình và phiên bản của FFmpeg nghĩa là bạn đã hoàn tất tích hợp thành công 100%!)*
 
 ---
 
